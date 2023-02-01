@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { friendsState } from '../../stores/friends';
-import selectedProfileState from '../../stores/selectedProfile';
+import { friendsState } from '../../../stores/friends';
+import selectedProfileState from '../../../stores/selectedProfile';
 import FriendsIcon from './FriendsIcon';
 
 const Friends = () => {
