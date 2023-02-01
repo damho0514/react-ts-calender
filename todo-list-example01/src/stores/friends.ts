@@ -1,12 +1,12 @@
 import { atom, selectorFamily } from 'recoil';
-import { IFriend } from '../interfaces/IFriends';
+import { IFriend } from '../features/interfaces/IFriends';
 
 const initialState: IFriend[] = [
   {
     userId: 'user1',
     name: '담호',
     profileImage: 'https://i.ibb.co/MgmDcz1/1021805078815985664.webp',
-    statusMessage: '나는 치타다',
+    statusMessage: '나는 담호담',
   },
   {
     userId: 'user2',

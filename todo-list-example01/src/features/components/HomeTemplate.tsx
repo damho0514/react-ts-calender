@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import Friends from './Friends/Friends';
-import FriendsProfile from './Friends/FriendsProfile';
+import { Calender } from './calender/Calender';
+import Friends from './friends/Friends';
+import FriendsProfile from './friends/FriendsProfile';
 
 const HomeTemplate = () => {
   return (
@@ -10,6 +11,7 @@ const HomeTemplate = () => {
         <LeftSide>
           <Friends />
           <FriendsProfile />
+          <Calender />
         </LeftSide>
       </Main>
     </Wrapper>

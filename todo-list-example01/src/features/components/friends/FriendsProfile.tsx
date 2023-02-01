@@ -2,12 +2,11 @@ import { useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
 import defaultImage from '../../assets/images/profileDefaultImage.png';
 import useWeather from '../../hooks/useWeather';
-import { selectUserById } from '../../stores/friends';
-import selectedProfileState from '../../stores/selectedProfile';
+import { selectUserById } from '../../../stores/friends';
+import selectedProfileState from '../../../stores/selectedProfile';
 
 const FriendsProfile = () => {
   const selectedId = useRecoilValue(selectedProfileState);
-  console.log('selectedId', selectedId);
   const [selectedProfile] = useRecoilValue(selectUserById(selectedId));
   console.log('selectedProfile', selectedProfile);
   const { degree, icon } = useWeather();
