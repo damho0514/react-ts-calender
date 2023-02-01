@@ -1,4 +1,4 @@
-import HomeTemplate from "./components/HomeTemplate";
+import HomeTemplate from './features/components/HomeTemplate';
 
 function App() {
   return (
