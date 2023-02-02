@@ -4,9 +4,9 @@ import dayjs from 'dayjs';
 import TodoIconSvg from './TodoIconSvg';
 import { ReactComponent as CheckIcon } from '../../assets/vectors/check.svg';
 
-export const renderCalenderBoard = () => {
-  return <div></div>;
-};
+// export const renderCalenderBoard = () => {
+//   return <div></div>;
+// };
 
 interface CalenderItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   date: string;
