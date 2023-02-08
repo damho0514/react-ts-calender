@@ -1,6 +1,6 @@
 import { Category } from './Category';
 
-export interface TodoItem {
+export interface TodoItems {
   label: string;
   id: string;
   isDone: boolean;

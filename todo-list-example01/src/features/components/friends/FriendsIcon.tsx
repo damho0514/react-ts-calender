@@ -1,6 +1,6 @@
 import { useSetRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
-import { IFriend } from '../../interfaces/IFriends';
+import { IFriend } from '../../../interfaces/IFriends';
 import selectedProfileState from '../../../stores/selectedProfile';
 
 interface FriendsIconProps {

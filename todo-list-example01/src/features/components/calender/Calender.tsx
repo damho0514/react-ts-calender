@@ -1,41 +1,40 @@
-import { useCallback } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import styled from 'styled-components';
 import dayjs from 'dayjs';
-import { selectedDateState } from '../../../stores/selectedDate';
+import styled from 'styled-components';
+import renderCalenderBoard from './renderCalenderBoard';
 import left from '../../assets/images/calenderLeft.png';
 import right from '../../assets/images/calenderRight.png';
-import { useRenderCalenderBoard } from './renderCalenderBoard';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import selectedProfileState from '../../../stores/selectedProfile';
+import { selectedDateState } from '../../../stores/selectedDate';
 
-export const Calender = () => {
+const days = ['일', '월', '화', '수', '목', '금', '토'];
+
+const Calender = () => {
   const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
   const selectedProfile = useRecoilValue(selectedProfileState);
-
   const splited = selectedDate.split('/');
-  const days = ['일', '월', '화', '수', '목', '금', '토'];
 
   const handleSelectDate = (v: string) => {
     setSelectedDate(v);
   };
 
-  const handlePrevMonth = useCallback(() => {
+  const handlePrevMonth = () => {
     const newDate = dayjs(selectedDate)
       .subtract(1, 'month')
       .endOf('month')
       .format('MM/DD/YY');
     setSelectedDate(newDate);
-  }, []);
+  };
 
-  const handleNextMonth = useCallback(() => {
+  const handleNextMonth = () => {
     const newDate = dayjs(selectedDate)
       .add(1, 'month')
       .startOf('month')
       .format('MM/DD/YY');
     setSelectedDate(newDate);
-  }, []);
+  };
 
-  const board = useRenderCalenderBoard(
+  const board = renderCalenderBoard(
     selectedDate,
     selectedProfile,
     handleSelectDate,
@@ -56,11 +55,13 @@ export const Calender = () => {
         {days.map((v) => (
           <div key={v}>{v}</div>
         ))}
-        <Board>{board}</Board>
       </Days>
+      <Board>{board}</Board>
     </Wrapper>
   );
 };
+
+export default Calender;
 
 const Wrapper = styled.div`
   margin-top: 16px;
