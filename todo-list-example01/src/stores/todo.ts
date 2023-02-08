@@ -1,11 +1,11 @@
 import { atomFamily, selectorFamily } from 'recoil';
 import {
-  TodoItem,
+  TodoItems,
   TodoItemKey,
   TodoItemSelectorParms,
-} from '../features/interfaces/TodoItem';
+} from '../interfaces/TodoItem';
 
-const initalState: TodoItem[] = [
+const initalState: TodoItems[] = [
   {
     label: '여행 시작하기',
     isDone: true,
@@ -35,19 +35,20 @@ const initalState: TodoItem[] = [
   },
 ];
 
-export const todoState = atomFamily<TodoItem[], TodoItemKey>({
+export const todoState = atomFamily<TodoItems[], TodoItemKey>({
   key: 'todo',
   default: [],
 });
 
-export const todoBycategory = selectorFamily<TodoItem[], TodoItemSelectorParms>(
-  {
-    key: 'todoSelector',
-    get:
-      ({ todoItemKey, categoryLabel }: TodoItemSelectorParms) =>
-      ({ get }) =>
-        get(todoState(todoItemKey)).filter(
-          (todo) => todo.category.label === categoryLabel,
-        ),
-  },
-);
+export const todoBycategory = selectorFamily<
+  TodoItems[],
+  TodoItemSelectorParms
+>({
+  key: 'todoSelector',
+  get:
+    ({ todoItemKey, categoryLabel }: TodoItemSelectorParms) =>
+    ({ get }) =>
+      get(todoState(todoItemKey)).filter(
+        (todo) => todo.category.label === categoryLabel,
+      ),
+});

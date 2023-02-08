@@ -1,5 +1,5 @@
 import { atom, selectorFamily } from 'recoil';
-import { IFriend } from '../features/interfaces/IFriends';
+import { IFriend } from '../interfaces/IFriends';
 
 const initialState: IFriend[] = [
   {
