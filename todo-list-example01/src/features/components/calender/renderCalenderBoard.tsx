@@ -1,19 +1,18 @@
 import dayjs from 'dayjs';
-import { ButtonHTMLAttributes, useState, useEffect } from 'react';
+import { ButtonHTMLAttributes, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import TodoIconSvg from './TodoIconSvg';
-import useTodoInfo from '../../hooks/useTodoInfo';
+import useTodoInfo from './useTodoInfo';
 import { ReactComponent as CheckIcon } from '../../assets/vectors/check.svg';
 
-export const useRenderCalenderBoard = (
+const useRenderCalenderBoard = (
   selectedDay: string,
   selectedProfile: string,
   handleSelectDate: (v: string) => void,
 ) => {
-  const [arr, setArr] = useState<(string | null)[]>([null]);
   const initArr = (firstDay: number, daysInMonth: number) => {
     return Array.from({ length: firstDay + daysInMonth }, (v, i) =>
-      i + firstDay
+      i < firstDay
         ? null
         : dayjs(selectedDay)
             .startOf('month')
@@ -21,6 +20,8 @@ export const useRenderCalenderBoard = (
             .format('MM/DD/YY'),
     );
   };
+
+  const [arr, setArr] = useState<(string | null)[]>([null]);
 
   useEffect(() => {
     const firstDay = dayjs(selectedDay).startOf('month').day();
@@ -30,7 +31,7 @@ export const useRenderCalenderBoard = (
 
   const content = arr.map((v, i) => (
     <Item key={v ? v.toString() : `${v}${i}`} isSelected={selectedDay === v}>
-      {v && (
+      {v && ( //TODO
         <CalenderItem
           date={v}
           userId={selectedProfile}
@@ -44,18 +45,21 @@ export const useRenderCalenderBoard = (
   return content;
 };
 
+export default useRenderCalenderBoard;
+
 interface CalenderItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   date: string;
   userId: string;
   isSelected: boolean;
 }
+
 const CalenderItem = ({
   date,
   userId,
   isSelected,
   ...props
 }: CalenderItemProps) => {
-  const { isDone, colorSetArr, count } = useTodoInfo(date, userId);
+  const { count, colorSetArr, isDone } = useTodoInfo(date, userId);
   return (
     <>
       <button {...props}>
@@ -100,8 +104,8 @@ const Item = styled.div<{ isSelected: Boolean }>`
 
   .date {
     font-weight: 700;
-    color: ${(isSelected) => (isSelected ? '#000' : '#b6b6b6')};
-    ${(isSelected) =>
+    color: ${({ isSelected }) => (isSelected ? '#000' : '#b6b6b6')};
+    ${({ isSelected }) =>
       isSelected
         ? css`
             color: #000;
