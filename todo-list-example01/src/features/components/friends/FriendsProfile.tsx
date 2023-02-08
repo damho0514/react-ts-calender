@@ -8,7 +8,7 @@ import selectedProfileState from '../../../stores/selectedProfile';
 const FriendsProfile = () => {
   const selectedId = useRecoilValue(selectedProfileState);
   const [selectedProfile] = useRecoilValue(selectUserById(selectedId));
-  console.log('selectedProfile', selectedProfile);
+
   const { degree, icon } = useWeather();
   return (
     <Wrapper>
@@ -21,7 +21,7 @@ const FriendsProfile = () => {
       </div>
       <Weather>
         <img src={icon} />
-        <p>{degree}</p>
+        <p>{degree}℃</p>
       </Weather>
     </Wrapper>
   );
